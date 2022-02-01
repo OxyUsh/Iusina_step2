@@ -1,4 +1,4 @@
-import './style.css';
+import './style.scss/index.scss'
 
 const userStack = {
     language: 'JavaScript',

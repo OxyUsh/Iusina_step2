@@ -9,6 +9,11 @@ console.log(mode + ' mode')
 
 module.exports = {
     mode: mode,
+    output: {
+        assetModuleFilename: "assets/[hash][ext][query]",
+        clean: true,
+        
+    },
     devServer: {
         open: true,
         hot: true,
@@ -24,10 +29,14 @@ module.exports = {
             filename: '[name].[contenthash].css'
         }),
         new HtmlWebpackPlugin(
-        {template: "./src/index.html"
+        {template: "./src/index.pug"
     })],
     module: {
         rules: [ 
+            {
+                test: /\.html$/i,
+                loader: "html-loader",
+        },
             { 
                 test: /\.(sa|sc|c)ss$/,
                 use: [
@@ -49,8 +58,23 @@ module.exports = {
                 },
                     "sass-loader",
 
-                ]
-            }
-                ]
+                ],
+
+            },
+            {
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|svg|otf)$/i,
+                type: 'asset/resource',
+            },
+            {
+                test: /\.pug$/,
+                loader: 'pug-loader',
+                exclude: /(node_modules|bower_components)/,
+            },
+        ]
     },
 }
+

@@ -1,0 +1,15 @@
+$prinaryColor:rgb(0, 116, 139);
+$seconddaryColor: red;
+
+h1 {
+    color:$prinaryColor;
+}
+.container {
+    &__subtitle{
+        color:$seconddaryColor;
+        display: block;
+        height: 140px;
+        background: url("../images/image.jpg");
+    }
+}
+
